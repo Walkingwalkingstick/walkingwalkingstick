@@ -33,13 +33,8 @@
     .entry{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:23px 0;border-bottom:1px solid var(--line)}
     .entry time{font:12px/1.5 Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
     .entry h3{margin:0 0 4px;font-size:23px;font-weight:500}.entry p{margin:0;color:var(--muted)}
-    .report-box{background:var(--soft);border:1px solid var(--line);padding:30px;max-width:760px}
-    .report-box p{font-size:18px;margin:0 0 18px} form{display:grid;gap:15px;margin-top:24px}
-    label{display:grid;gap:7px;font:700 12px/1.3 Arial,sans-serif;letter-spacing:.04em}
-    input,textarea{width:100%;font:16px/1.4 Arial,sans-serif;background:var(--paper);border:1px solid #aaa59a;padding:13px;color:var(--ink)}
-    textarea{min-height:110px;resize:vertical} input:disabled,textarea:disabled{opacity:.58}
-    .disabled-btn{width:max-content;border:1px solid #8c887e;background:transparent;color:#77736b;padding:15px 18px;font:700 12px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase}
-    .form-status{margin:5px 0 0!important;font:13px/1.45 Arial,sans-serif!important;color:var(--muted)}
+    .tally-wrap{max-width:860px;margin-top:4px}
+    .tally-wrap iframe{width:100%;border:0;display:block}
     .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}.gallery img{width:100%;display:block;border:1px solid var(--line)}
     footer{padding:38px 0 54px;font:13px/1.6 Arial,sans-serif;color:var(--muted)} footer strong{color:var(--ink)}
     @media(max-width:760px){.intro{grid-template-columns:1fr;gap:28px}.section-head{display:block}.section-head p{margin-top:10px}#map{height:380px}.entry{grid-template-columns:1fr;gap:7px}.gallery{grid-template-columns:1fr}}
@@ -91,18 +86,10 @@
   <section class="section" id="report"><div class="wrap">
     <div class="section-head">
       <h2>Found it?</h2>
-      <p>This tiny form will accept a location, an optional comment and an optional photograph once the reporting endpoint is connected.</p>
+      <p>Tell us roughly where the stick has got to. A comment and photograph are entirely optional.</p>
     </div>
-    <div class="report-box">
-      <p>Tell us where the stick has got to. Approximate locations are fine.</p>
-      <form>
-        <label>Where did you find it?<input type="text" placeholder="e.g. Bakewell, Derbyshire" disabled></label>
-        <label>Where did you leave it?<input type="text" placeholder="e.g. near the market square" disabled></label>
-        <label>Anything you’d like to say? <span style="font-weight:400">(optional)</span><textarea placeholder="A sentence is plenty." disabled></textarea></label>
-        <label>Photo <span style="font-weight:400">(optional)</span><input type="file" accept="image/*" disabled></label>
-        <button class="disabled-btn" type="button" disabled>Reporting connection pending</button>
-        <p class="form-status">The permanent address is secured. Reporting is the final connection still to switch on.</p>
-      </form>
+    <div class="tally-wrap">
+      <iframe data-tally-src="https://tally.so/embed/xXbKv5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" title="I found the Walking Walking Stick"></iframe>
     </div>
   </div></section>
 
@@ -130,6 +117,10 @@
     maxZoom: 19,
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
+</script>
+<script>
+  var d=document,w="https://tally.so/widgets/embed.js",v=function(){if(typeof Tally!=="undefined")Tally.loadEmbeds();else d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc})};
+  if(typeof Tally!=="undefined")v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s)}
 </script>
 </body>
 </html>
