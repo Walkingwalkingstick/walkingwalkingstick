@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Walking Walking Stick. A walking stick that keeps walking.">
+  <title>The Walking Walking Stick</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root{--paper:#f4f1e9;--ink:#1b1b18;--muted:#68665e;--line:#cfcabf;--soft:#e9e4d8;--max:1080px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+    a{color:inherit}.wrap{width:min(calc(100% - 36px),var(--max));margin:0 auto}
+    header{padding:34px 0 22px;border-bottom:1px solid var(--line)}
+    .kicker{font:12px/1.2 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+    h1{margin:0;font-size:clamp(38px,7vw,84px);line-height:.95;font-weight:500;letter-spacing:-.045em;max-width:900px}
+    .strap{margin:15px 0 0;font-size:clamp(18px,2.5vw,28px);color:var(--muted)}
+    .hero{padding:30px 0 0}.hero img{width:100%;display:block;max-height:78vh;object-fit:cover;object-position:center;border:1px solid var(--line)}
+    .intro{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;padding:56px 0 62px;border-bottom:1px solid var(--line)}
+    .intro h2,.section h2{font-size:clamp(29px,4vw,46px);line-height:1.05;font-weight:500;letter-spacing:-.025em;margin:0 0 20px}
+    .intro p{font-size:20px;margin:0 0 18px}.plain-note{font-family:Arial,sans-serif;font-size:14px!important;color:var(--muted);max-width:44ch}
+    .steps{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+    .steps li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:34px 1fr;gap:8px;font-size:17px}
+    .steps b{font:12px/1.6 Arial,sans-serif;color:var(--muted)}
+    .button{display:inline-block;margin-top:24px;background:var(--ink);color:var(--paper);text-decoration:none;font:700 13px/1 Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase;padding:17px 20px;border:1px solid var(--ink)}
+    .button:hover{background:transparent;color:var(--ink)}
+    .section{padding:60px 0;border-bottom:1px solid var(--line)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:24px}
+    .section-head p{margin:0;max-width:420px;color:var(--muted);font:14px/1.45 Arial,sans-serif}
+    #map{height:480px;width:100%;border:1px solid var(--line);background:var(--soft)}
+    .map-empty{margin-top:10px;color:var(--muted);font:13px/1.4 Arial,sans-serif}
+    .journey{margin-top:34px;border-top:1px solid var(--line)}
+    .entry{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:23px 0;border-bottom:1px solid var(--line)}
+    .entry time{font:12px/1.5 Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .entry h3{margin:0 0 4px;font-size:23px;font-weight:500}.entry p{margin:0;color:var(--muted)}
+    .report-box{background:var(--soft);border:1px solid var(--line);padding:30px;max-width:760px}
+    .report-box p{font-size:18px;margin:0 0 18px} form{display:grid;gap:15px;margin-top:24px}
+    label{display:grid;gap:7px;font:700 12px/1.3 Arial,sans-serif;letter-spacing:.04em}
+    input,textarea{width:100%;font:16px/1.4 Arial,sans-serif;background:var(--paper);border:1px solid #aaa59a;padding:13px;color:var(--ink)}
+    textarea{min-height:110px;resize:vertical} input:disabled,textarea:disabled{opacity:.58}
+    .disabled-btn{width:max-content;border:1px solid #8c887e;background:transparent;color:#77736b;padding:15px 18px;font:700 12px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase}
+    .form-status{margin:5px 0 0!important;font:13px/1.45 Arial,sans-serif!important;color:var(--muted)}
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}.gallery img{width:100%;display:block;border:1px solid var(--line)}
+    footer{padding:38px 0 54px;font:13px/1.6 Arial,sans-serif;color:var(--muted)} footer strong{color:var(--ink)}
+    @media(max-width:760px){.intro{grid-template-columns:1fr;gap:28px}.section-head{display:block}.section-head p{margin-top:10px}#map{height:380px}.entry{grid-template-columns:1fr;gap:7px}.gallery{grid-template-columns:1fr}.hero img{max-height:none}}
+  </style>
+</head>
+<body>
+<header><div class="wrap">
+  <p class="kicker">Walking stick no. 001</p>
+  <h1>The Walking<br>Walking Stick</h1>
+  <p class="strap">A walking stick that keeps walking.</p>
+</div></header>
+
+<main>
+  <div class="wrap hero"><img src="assets/stick-upright-1.webp" alt="The Walking Walking Stick standing on a country path"></div>
+
+  <section class="wrap intro">
+    <div>
+      <h2>You’ve found the stick pictured above.</h2>
+      <p>It isn’t for sale and nobody wants your personal details.</p>
+      <p>It’s simply travelling from place to place. If you find it, use it if you like. When you’re finished, leave it somewhere sensible for somebody else to find.</p>
+      <p class="plain-note">No account. No mailing list. Just a stick trying to get somewhere.</p>
+      <a class="button" href="#report">I found the stick</a>
+    </div>
+    <div>
+      <ol class="steps">
+        <li><b>01</b><span>Find it.</span></li>
+        <li><b>02</b><span>Use it, if you fancy.</span></li>
+        <li><b>03</b><span>Tell us roughly where it was.</span></li>
+        <li><b>04</b><span>Leave it somewhere sensible for the next person.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section"><div class="wrap">
+    <div class="section-head">
+      <h2>Where has it been?</h2>
+      <p>The map will grow one pin at a time. Locations are deliberately approximate: the journey matters more than anybody’s precise whereabouts.</p>
+    </div>
+    <div id="map" aria-label="Map of the Walking Walking Stick journey"></div>
+    <p class="map-empty">No journey pins yet. Good. It hasn’t cheated.</p>
+    <div class="journey">
+      <article class="entry">
+        <time datetime="2026-08">August 2026</time>
+        <div><h3>Ready to go</h3><p>Cleaned, smoothed, photographed, named and given a permanent web address. Waiting for its first proper walk.</p></div>
+      </article>
+    </div>
+  </div></section>
+
+  <section class="section" id="report"><div class="wrap">
+    <div class="section-head">
+      <h2>Found it?</h2>
+      <p>This tiny form will accept a location, an optional comment and an optional photograph once the reporting endpoint is connected.</p>
+    </div>
+    <div class="report-box">
+      <p>Tell us where the stick has got to. Approximate locations are fine.</p>
+      <form>
+        <label>Where did you find it?<input type="text" placeholder="e.g. Bakewell, Derbyshire" disabled></label>
+        <label>Where did you leave it?<input type="text" placeholder="e.g. near the market square" disabled></label>
+        <label>Anything you’d like to say? <span style="font-weight:400">(optional)</span><textarea placeholder="A sentence is plenty." disabled></textarea></label>
+        <label>Photo <span style="font-weight:400">(optional)</span><input type="file" accept="image/*" disabled></label>
+        <button class="disabled-btn" type="button" disabled>Reporting connection pending</button>
+        <p class="form-status">The permanent address is secured. Reporting is the final connection still to switch on.</p>
+      </form>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="section-head">
+      <h2>The stick, resting.</h2>
+      <p>For identification purposes. Also because even travelling sticks are entitled to a lie down.</p>
+    </div>
+    <div class="gallery">
+      <img src="assets/stick-resting-1.webp" alt="The stick lying on dry grass, first side">
+      <img src="assets/stick-resting-2.webp" alt="The stick lying on dry grass, second side">
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <strong>Thanks to everybody who carries it, uses it or passes it on.</strong><br>
+  The Walking Walking Stick · walkingwalkingstick.co.uk
+</div></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  const map = L.map('map', {scrollWheelZoom:false}).setView([54.3, -2.6], 5);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+</script>
+</body>
+</html>
