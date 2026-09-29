@@ -36,6 +36,7 @@
     .tally-wrap{max-width:860px;margin-top:4px}
     .tally-wrap iframe{width:100%;border:0;display:block}
     .gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px}.gallery img{width:100%;display:block;border:1px solid var(--line)}
+    .departure-gallery{display:grid;gap:16px}.departure-gallery img{width:100%;height:auto;display:block;border:1px solid var(--line)}.departure-gallery .departure-tag{width:min(100%,760px);margin:0 auto}
     footer{padding:38px 0 54px;font:13px/1.6 Arial,sans-serif;color:var(--muted)} footer strong{color:var(--ink)}
     @media(max-width:760px){.intro{grid-template-columns:1fr;gap:28px}.section-head{display:block}.section-head p{margin-top:10px}#map{height:380px}.entry{grid-template-columns:1fr;gap:7px}.gallery{grid-template-columns:1fr}}
   </style>
@@ -48,7 +49,7 @@
 </div></header>
 
 <main>
-  <div class="wrap hero"><img src="assets/stick-upright-1.webp" alt="The Walking Walking Stick standing on a country path"></div>
+  <div class="wrap hero"><img src="assets/stick-ready-upright.webp" alt="The Walking Walking Stick, tagged and ready to roam, standing on a country path"></div>
 
   <section class="wrap intro">
     <div>
@@ -77,6 +78,10 @@
     <p class="map-empty">No journey pins yet. Good. It hasn’t cheated.</p>
     <div class="journey">
       <article class="entry">
+        <time datetime="2026-09">September 2026</time>
+        <div><h3>Ready to roam</h3><p>Tag fitted, QR tested and working. One last photograph before departure.</p></div>
+      </article>
+      <article class="entry">
         <time datetime="2026-08">August 2026</time>
         <div><h3>Ready to go</h3><p>Cleaned, smoothed, photographed, named and given a permanent web address. Waiting for its first proper walk.</p></div>
       </article>
@@ -90,6 +95,17 @@
     </div>
     <div class="tally-wrap">
       <iframe data-tally-src="https://tally.so/embed/xXbKv5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" title="I found the Walking Walking Stick"></iframe>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="wrap">
+    <div class="section-head">
+      <h2>Ready to roam.</h2>
+      <p>Tag fitted. QR working. One last look before he goes off on his own.</p>
+    </div>
+    <div class="departure-gallery">
+      <img src="assets/stick-ready-length.webp" loading="lazy" alt="The Walking Walking Stick lying at full length with its new tag fitted">
+      <img class="departure-tag" src="assets/stick-ready-tag.webp" loading="lazy" alt="Close-up of the Walking Walking Stick identification plate and QR code">
     </div>
   </div></section>
 
